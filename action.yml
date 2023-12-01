@@ -35,7 +35,7 @@ runs:
     - name: "Installs the required packages to the venv"
       shell: bash
       run: |
-        ${{join(inputs.requirements, ' ${{inputs.requirements_file}}')}}
+        ${{join(inputs.requirements, '>>${{inputs.requirements_file}};')}}>>${{inputs.requirements_file}}
         . venv/bin/activate
         pip install -r ${{inputs.requirements_file}} -c ${{inputs.constraints_file}}
     - name: "Runs the shell script"
