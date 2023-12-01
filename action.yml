@@ -28,15 +28,11 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version:  ${{inputs.python_version}}
-    - name: "Creates and starts the virtual environment"
+    - name: "Creates the virtual environment"
       shell: bash
       run: |
         python -m venv venv
-        . venv/bin/activate
-        echo "PATH=$PATH:$VIRTUAL_ENV/bin" >> $GITHUB_ENV
-        echo "VIRTUAL_ENV=$VIRTUAL_ENV/bin" >> $GITHUB_ENV
-        which python
-    - name: "Installs the required packages"
+    - name: "Installs the required packages to the venv"
       shell: bash
       run: |
         echo ${{inputs.requirements}} >> ${{inputs.requirements_file}}
