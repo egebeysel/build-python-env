@@ -16,10 +16,12 @@ inputs:
     default: constraints.txt
   requirements:
     description: "Package versions to be installed in the venv"
-    default: " "
+    default: |
+      
   constraints:
     description: "Constraints on individual package versions"
-    default: " "
+    default: |
+      
   run:
     description: "Shell command to be ran inside the venv"
 
