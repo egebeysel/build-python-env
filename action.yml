@@ -1,0 +1,43 @@
+name: "Build python environment"
+description: "Download the specified python version and build the venv according to the requirements/constraints"
+
+inputs:
+  python_version:
+    description:  "Python version of the virtual environment"
+    required: true
+    default: 3.10
+  requirements_file:
+    description: "Requirements file listing the packages"
+    required: true
+    default: requirements.txt
+  constraints_file:
+    description: "Constraints file listing the package constraints"
+    required: true
+    default: constraints.txt
+  requirements:
+    description: "Package versions to be installed in the venv"
+  constraints:
+    description: "Constraints on individual package versions"
+  run:
+    description: "Shell command to be ran inside the venv"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Downloads and sets up python"
+      uses: actions/setup-python@v4
+      with:
+        python-version:  ${{inputs.python_version}}
+    - name: "Creates and starts the virtual environment"
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+    - name: "Installs the required packages"
+      run: |
+        echo ${{inputs.requirements}} >> ${{input.requirements_file}}
+        echo ${{inputs.constraints}} >> ${{input.constraints_file}}
+        pip install -r ${{inputs.requirements_file}} -c ${{inputs.constraints_file}}
+    - name: "Runs the shell script"
+      run: ${{inputs.run}}
+
+    
