@@ -29,15 +29,18 @@ runs:
       with:
         python-version:  ${{inputs.python_version}}
     - name: "Creates and starts the virtual environment"
+      shell: bash
       run: |
         python -m venv venv
         source venv/bin/activate
     - name: "Installs the required packages"
+      shell: bash
       run: |
-        echo ${{inputs.requirements}} >> ${{input.requirements_file}}
-        echo ${{inputs.constraints}} >> ${{input.constraints_file}}
+        echo ${{inputs.requirements}} >> ${{inputs.requirements_file}}
+        echo ${{inputs.constraints}} >> ${{inputs.constraints_file}}
         pip install -r ${{inputs.requirements_file}} -c ${{inputs.constraints_file}}
     - name: "Runs the shell script"
+      shell: bash
       run: ${{inputs.run}}
 
     
