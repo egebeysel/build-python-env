@@ -34,7 +34,7 @@ runs:
         python -m venv venv
         . venv/bin/activate
         echo "PATH=$PATH:$VIRTUAL_ENV/bin" >> $GITHUB_ENV
-        echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+        echo "VIRTUAL_ENV=$VIRTUAL_ENV/bin" >> $GITHUB_ENV
         which python
     - name: "Installs the required packages"
       shell: bash
