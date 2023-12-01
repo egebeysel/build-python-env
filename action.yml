@@ -35,7 +35,7 @@ runs:
     - name: "Installs the required packages to the venv"
       shell: bash
       run: |
-        cat >${{inputs.requirements_file}}<< EOL
+        cat >>${{inputs.requirements_file}}<< EOL
         ${{inputs.requirements}}
         EOL
         . venv/bin/activate
