@@ -41,10 +41,12 @@ runs:
       run: |
         echo ${{inputs.requirements}} >> ${{inputs.requirements_file}}
         echo ${{inputs.constraints}} >> ${{inputs.constraints_file}}
-        which python
+        . venv/bin/activate
         pip install -r ${{inputs.requirements_file}} -c ${{inputs.constraints_file}}
     - name: "Runs the shell script"
       shell: bash
-      run: ${{inputs.run}}
+      run: |
+        . venv/bin/activate
+        ${{inputs.run}}
 
     
