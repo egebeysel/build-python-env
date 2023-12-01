@@ -34,11 +34,14 @@ runs:
         python -m venv venv
         . venv/bin/activate
         echo "PATH=$PATH" >> $GITHUB_ENV
+        echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+        where python
     - name: "Installs the required packages"
       shell: bash
       run: |
         echo ${{inputs.requirements}} >> ${{inputs.requirements_file}}
         echo ${{inputs.constraints}} >> ${{inputs.constraints_file}}
+        where python
         pip install -r ${{inputs.requirements_file}} -c ${{inputs.constraints_file}}
     - name: "Runs the shell script"
       shell: bash
