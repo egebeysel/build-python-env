@@ -33,7 +33,7 @@ runs:
       run: |
         python -m venv venv
         . venv/bin/activate
-        echo PATH=$PATH >> $GITHUB_ENV
+        echo "PATH=$PATH" >> $GITHUB_ENV
     - name: "Installs the required packages"
       shell: bash
       run: |
