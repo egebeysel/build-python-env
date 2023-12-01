@@ -36,8 +36,7 @@ runs:
       shell: bash
       run: |
         cat >>${{inputs.requirements_file}}<< EOL
-        ${{inputs.requirements}}
-        EOL
+        ${{inputs.requirements}}EOL
         . venv/bin/activate
         pip install -r ${{inputs.requirements_file}} -c ${{inputs.constraints_file}}
     - name: "Runs the shell script"
